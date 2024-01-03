@@ -5,13 +5,9 @@ class Solution:
         i,j = 0, len(people) - 1
         ans = 0
         while i<=j:
-            if people[i] + people[j] <= limit:
-                ans+=1
-                i+=1
-                j-=1
-            elif people[i] + people[j] > limit:
-                ans+=1
-                j-=1
+            if people[i] + people[j] <= limit: i+=1
+            ans+=1
+            j-=1
         
         return ans
 

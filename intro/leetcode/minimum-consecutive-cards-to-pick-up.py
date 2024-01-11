@@ -1,17 +1,16 @@
 class Solution:
-    def minimumCardPickup(self, nums: List[int]) -> int:
+    def minimumCardPickup(self, cards: List[int]) -> int:
+        n = len(cards)
+        l, r = 0,0
+        mine = defaultdict(int)
         ans = float('inf')
-        mine = defaultdict(lambda:-1)
-        i,j = 0,0
-        while j<len(nums):
-            if mine[nums[j]]!=-1:
-                ans = min(j-mine[nums[j]]+1,ans)
-                mine[nums[j]] = j
-                j+=1
-                i = j               
-                continue
-            
-            mine[nums[j]] = j
-            j+=1
-            
-        return -1 if ans==float('inf') else ans
+        while r<n:
+            mine[cards[r]]+=1
+            while len(mine)<r-l+1:
+                ans = min(ans, r-l+1)
+                mine[cards[l]]-=1
+                if not mine[cards[l]]: del mine[cards[l]]
+                l+=1
+            r+=1
+
+        return -1 if ans==float('inf') else ans       

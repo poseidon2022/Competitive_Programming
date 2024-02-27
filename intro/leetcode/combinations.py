@@ -6,14 +6,15 @@ class Solution:
             if len(arr) == k:
                 ans.append(arr[:])
                 return
-            if cur > n:
+            
+            if n - cur + 1 < k - len(arr):
                 return
             
+            for i in range(cur, n+1):
 
-            arr.append(cur)
-            helper(arr, cur + 1)
-            arr.pop()
-            helper(arr, cur + 1)
+                arr.append(i)
+                helper(arr, i + 1)
+                arr.pop()
         
         helper([],1)
         return ans

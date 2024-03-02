@@ -15,8 +15,8 @@ class Solution:
             return True
         
         def helper(board):
-            for row in range(9):
-                for col in range(9):
+            for row in range(len(board)):
+                for col in range(len(board[0])):
                     if board[row][col] == '.':
 
                         for num in "123456789":
